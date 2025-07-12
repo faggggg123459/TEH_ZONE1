@@ -1,1 +1,151 @@
+/* style.css */
 
+body {
+  background: linear-gradient(135deg, #1e1e2f, #121212);
+  font-family: 'Segoe UI', sans-serif;
+  color: #f0f0f0;
+  position: relative;
+  z-index: 1;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* Неоновий фільтр поверх фону */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+}
+
+/* Шапка */
+.main-header {
+  background-color: #0d0d0d;
+  color: #fff;
+  box-shadow: 0 4px 25px rgba(0, 255, 255, 0.2);
+}
+
+/* Кнопки у шапці */
+.btn-outline-warning {
+  border-color: #ffcc00;
+  color: #ffcc00;
+}
+
+.btn-outline-warning:hover {
+  background-color: #ffcc00;
+  color: #000;
+}
+
+.btn-outline-info {
+  border-color: #00bfff;
+  color: #00bfff;
+}
+
+.btn-outline-info:hover {
+  background-color: #00bfff;
+  color: #fff;
+}
+
+.btn-outline-light {
+  border-color: #fff;
+  color: #fff;
+}
+
+.btn-outline-light:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Заголовки секцій */
+.section-title {
+  color: #ffffff;
+  font-size: 1.8rem;
+  border-left: 5px solid #00ffff;
+  padding-left: 10px;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* Сайдбар */
+aside {
+  background-color: #1a1a1a;
+}
+
+aside h5 {
+  color: #00ffff;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+}
+
+aside a.nav-link {
+  color: #ccc;
+  transition: color 0.3s ease;
+}
+
+aside a.nav-link:hover {
+  color: #00bfff;
+  text-shadow: 0 0 5px rgba(0, 191, 255, 0.7);
+}
+
+/* Картки товарів */
+.card {
+  border: none;
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background: #222;
+  color: #fff;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+.card img {
+  border-radius: 10px 10px 0 0;
+}
+
+.card-body {
+  text-align: center;
+}
+
+.rating {
+  color: #ffd700;
+}
+
+/* Кнопка купити */
+.btn-buy {
+  background-color: #00bfff;
+  color: #fff;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 191, 255, 0.4);
+}
+
+.btn-buy:hover {
+  background-color: #00ffff;
+  color: #000;
+}
+
+/* Футер */
+footer {
+  background-color: #0d0d0d;
+  color: #fff;
+  box-shadow: 0 -4px 25px rgba(0, 255, 255, 0.1);
+}
+
+footer a {
+  color: #00bfff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+  color: #00ffff;
+}
+
+h1, h3, h5 {
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+}
