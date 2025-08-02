@@ -1,1 +1,366 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEH_ZONE | Оформлення замовлення</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Checkoutnow.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="loader-logo">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#6A5ACD" d="M100,0 C155.228,0 200,44.772 200,100 C200,155.228 155.228,200 100,200 C44.772,200 0,155.228 0,100 C0,44.772 44.772,0 100,0 Z" />
+                    <text x="50%" y="50%" fill="white" font-size="36" font-weight="bold" text-anchor="middle" dominant-baseline="middle">TZ</text>
+                </svg>
+            </div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo" aria-label="TEH_ZONE Logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#6A5ACD" d="M20,0 C31.046,0 40,8.954 40,20 C40,31.046 31.046,40 20,40 C8.954,40 0,31.046 0,20 C0,8.954 8.954,0 20,0 Z" />
+                        <text x="50%" y="50%" fill="white" font-size="14" font-weight="bold" text-anchor="middle" dominant-baseline="middle">TZ</text>
+                    </svg>
+                    <span>TEH_ZONE</span>
+                </a>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="about.html">Про нас</a></li>
+                        <li><a href="delivery.html">Доставка</a></li>
+                        <li><a href="contacts.html">Контакти</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <button class="menu-toggle" aria-label="Toggle menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Order Section -->
+    <main class="order-main">
+        <div class="container">
+            <!-- Order Progress -->
+            <div class="order-progress">
+                <div class="progress-step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Контактні дані</div>
+                    <div class="step-connector"></div>
+                </div>
+                <div class="progress-step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Доставка</div>
+                    <div class="step-connector"></div>
+                </div>
+                <div class="progress-step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Оплата</div>
+                    <div class="step-connector"></div>
+                </div>
+                <div class="progress-step" data-step="4">
+                    <div class="step-number">4</div>
+                    <div class="step-label">Підтвердження</div>
+                </div>
+            </div>
+
+            <!-- Order Form -->
+            <form id="order-form" class="order-form">
+                <!-- Step 1: Contact Info -->
+                <div class="form-step active" data-step="1">
+                    <h2 class="form-title">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Контактні дані</span>
+                    </h2>
+                    
+                    <div class="form-grid">
+                        <div class="form-group floating-label">
+                            <input type="text" id="first-name" name="first-name" required>
+                            <label for="first-name">Ім'я*</label>
+                            <div class="form-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group floating-label">
+                            <input type="text" id="last-name" name="last-name" required>
+                            <label for="last-name">Прізвище*</label>
+                            <div class="form-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group floating-label">
+                            <input type="tel" id="phone" name="phone" required>
+                            <label for="phone">Телефон*</label>
+                            <div class="form-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group floating-label">
+                            <input type="email" id="email" name="email" required>
+                            <label for="email">Email*</label>
+                            <div class="form-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-next" data-next="2">Далі <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Step 2: Delivery -->
+                <div class="form-step" data-step="2">
+                    <h2 class="form-title">
+                        <i class="fas fa-truck"></i>
+                        <span>Доставка</span>
+                    </h2>
+                    
+                    <div class="delivery-options">
+                        <div class="option-card selected">
+                            <input type="radio" id="delivery-nova-poshta" name="delivery" value="nova-poshta" checked>
+                            <label for="delivery-nova-poshta">
+                                <div class="option-icon">
+                                    <i class="fas fa-box"></i>
+                                </div>
+                                <div class="option-content">
+                                    <h3>Нова Пошта</h3>
+                                    <p>Доставка у відділення або поштомат</p>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="option-card">
+                            <input type="radio" id="delivery-courier" name="delivery" value="courier">
+                            <label for="delivery-courier">
+                                <div class="option-icon">
+                                    <i class="fas fa-truck-fast"></i>
+                                </div>
+                                <div class="option-content">
+                                    <h3>Кур'єрська доставка</h3>
+                                    <p>Доставка за вашою адресою</p>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="option-card">
+                            <input type="radio" id="delivery-pickup" name="delivery" value="pickup">
+                            <label for="delivery-pickup">
+                                <div class="option-icon">
+                                    <i class="fas fa-store"></i>
+                                </div>
+                                <div class="option-content">
+                                    <h3>Самовивіз</h3>
+                                    <p>м. Київ, вул. Теремська, 52</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="delivery-details">
+                        <div class="form-group floating-label">
+                            <input type="text" id="city" name="city" required>
+                            <label for="city">Місто*</label>
+                            <div class="form-icon">
+                                <i class="fas fa-city"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group floating-label">
+                            <input type="text" id="address" name="address" required>
+                            <label for="address">Адреса*</label>
+                            <div class="form-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group floating-label">
+                            <input type="text" id="post-office" name="post-office">
+                            <label for="post-office">Відділення/поштомат</label>
+                            <div class="form-icon">
+                                <i class="fas fa-location-dot"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-prev" data-prev="1"><i class="fas fa-arrow-left"></i> Назад</button>
+                        <button type="button" class="btn btn-next" data-next="3">Далі <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Step 3: Payment -->
+                <div class="form-step" data-step="3">
+                    <h2 class="form-title">
+                        <i class="fas fa-credit-card"></i>
+                        <span>Оплата</span>
+                    </h2>
+                    
+                    <div class="payment-options">
+                        <div class="option-card selected">
+                            <input type="radio" id="payment-card" name="payment" value="card" checked>
+                            <label for="payment-card">
+                                <div class="option-icon">
+                                    <i class="fas fa-credit-card"></i>
+                                </div>
+                                <div class="option-content">
+                                    <h3>Оплата карткою</h3>
+                                    <p>Безпечна оплата онлайн</p>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="option-card">
+                            <input type="radio" id="payment-cash" name="payment" value="cash">
+                            <label for="payment-cash">
+                                <div class="option-icon">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                </div>
+                                <div class="option-content">
+                                    <h3>Оплата при отриманні</h3>
+                                    <p>Готівкою або карткою</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-details">
+                        <div class="form-group floating-label">
+                            <input type="text" id="card-number" name="card-number">
+                            <label for="card-number">Номер картки</label>
+                            <div class="form-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group floating-label">
+                                <input type="text" id="card-expiry" name="card-expiry" placeholder="MM/YY">
+                                <label for="card-expiry">Термін дії</label>
+                            </div>
+                            
+                            <div class="form-group floating-label">
+                                <input type="text" id="card-cvv" name="card-cvv">
+                                <label for="card-cvv">CVV</label>
+                                <div class="form-icon">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="agree-terms" name="agree-terms" required>
+                        <label for="agree-terms">Я погоджуюсь з <a href="#">умовами обробки персональних даних</a> та <a href="#">правилами магазину</a>*</label>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-prev" data-prev="2"><i class="fas fa-arrow-left"></i> Назад</button>
+                        <button type="submit" class="btn btn-submit">Підтвердити замовлення <i class="fas fa-check"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Step 4: Confirmation -->
+                <div class="form-step confirmation-step" data-step="4">
+                    <div class="confirmation-icon">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" fill="#6A5ACD"/>
+                            <path fill="none" stroke="#FFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M30,50 l15,15 l30-30"/>
+                        </svg>
+                    </div>
+                    <h2>Дякуємо за замовлення!</h2>
+                    <p class="confirmation-text">Ваше замовлення #TZ-2023-4567 успішно оформлено. Наш менеджер зв'яжеться з вами для підтвердження.</p>
+                    <div class="confirmation-details">
+                        <div class="detail-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>Деталі замовлення відправлено на example@email.com</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-phone"></i>
+                            <span>Якщо виникнуть питання: +380 (44) 123-45-67</span>
+                        </div>
+                    </div>
+                    <div class="confirmation-actions">
+                        <a href="catalog.html" class="btn btn-continue">Продовжити покупки</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>TEH_ZONE</h3>
+                    <p>Інтернет-магазин сучасної техніки та гаджетів. Ми працюємо для вас з 2024 року.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Магазин</h3>
+                    <ul>
+                        <li><a href="catalog.html">Каталог товарів</a></li>
+                        <li><a href="promotions.html">Акції та знижки</a></li>
+                        <li><a href="new.html">Новинки</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Клієнтам</h3>
+                    <ul>
+                        <li><a href="delivery.html">Доставка та оплата</a></li>
+                        <li><a href="warranty.html">Гарантія та повернення</a></li>
+                        <li><a href="faq.html">Часті питання</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Контакти</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> м. Київ, вул. Теремська, 52</li>
+                        <li><i class="fas fa-phone"></i> +380 (44) 123-45-67</li>
+                        <li><i class="fas fa-envelope"></i> info@tehzone.ua</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 TEH_ZONE. Всі права захищені.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="Checkoutnow.js"></script>
+    <script src="js/order.js"></script>
+</body>
+</html>
