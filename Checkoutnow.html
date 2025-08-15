@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>TEH_ZONE | Оформлення замовлення</title>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <link rel="stylesheet" href="Checkoutnow.css"/>
 </head>
@@ -34,8 +33,7 @@
 
     <!-- Main -->
     <main class="order-main container">
-        <!-- Progress -->
-        <div class="order-progress" aria-hidden="false">
+        <div class="order-progress">
             <div class="progress-line"><span></span></div>
             <div class="steps">
                 <div class="progress-step active" data-step="1"><div class="num">1</div><div class="label">Контакти</div></div>
@@ -45,19 +43,18 @@
             </div>
         </div>
 
-        <!-- Form -->
         <form id="order-form" class="order-form" novalidate>
-            <!-- STEP 1 -->
+            <!-- STEP 1: Контакти -->
             <section class="form-step active" data-step="1">
                 <h2 class="form-title"><i class="fas fa-user-circle"></i> Контактні дані</h2>
                 <div class="grid-col-2">
                     <label class="field">
-                        <input required type="text" id="first-name" name="firstName" />
+                        <input required type="text" id="first-name" name="firstName" placeholder=" " />
                         <span>Ім'я *</span>
                         <i class="fa fa-user field-icon"></i>
                     </label>
                     <label class="field">
-                        <input required type="text" id="last-name" name="lastName" />
+                        <input required type="text" id="last-name" name="lastName" placeholder=" " />
                         <span>Прізвище *</span>
                         <i class="fa fa-user field-icon"></i>
                     </label>
@@ -67,34 +64,30 @@
                         <i class="fa fa-phone field-icon"></i>
                     </label>
                     <label class="field">
-                        <input required type="email" id="email" name="email" />
+                        <input required type="email" id="email" name="email" placeholder=" " />
                         <span>Email *</span>
                         <i class="fa fa-envelope field-icon"></i>
                     </label>
                 </div>
-
                 <div class="actions">
                     <button type="button" class="btn btn-primary btn-next" data-next="2">Далі <i class="fas fa-arrow-right"></i></button>
                 </div>
             </section>
 
-            <!-- STEP 2 -->
+            <!-- STEP 2: Доставка -->
             <section class="form-step" data-step="2">
                 <h2 class="form-title"><i class="fas fa-truck"></i> Доставка</h2>
-
                 <div class="options-row">
                     <label class="option-card selected">
                         <input type="radio" name="delivery" value="nova-poshta" checked />
                         <div class="opt-head"><i class="fa-solid fa-box"></i><strong>Нова Пошта</strong></div>
                         <div class="opt-sub">Доставка у відділення / поштомат</div>
                     </label>
-
                     <label class="option-card">
                         <input type="radio" name="delivery" value="courier" />
                         <div class="opt-head"><i class="fa-solid fa-truck-fast"></i><strong>Кур'єр</strong></div>
                         <div class="opt-sub">Доставка за адресою</div>
                     </label>
-
                     <label class="option-card">
                         <input type="radio" name="delivery" value="pickup" />
                         <div class="opt-head"><i class="fa-solid fa-store"></i><strong>Самовивіз</strong></div>
@@ -104,19 +97,17 @@
 
                 <div class="delivery-details grid-col-2">
                     <label class="field" id="field-city">
-                        <input type="text" id="city" name="city" />
+                        <input type="text" id="city" name="city" placeholder=" " />
                         <span>Місто *</span>
                         <i class="fa fa-city field-icon"></i>
                     </label>
-
                     <label class="field" id="field-address">
-                        <input type="text" id="address" name="address" />
+                        <input type="text" id="address" name="address" placeholder=" " />
                         <span>Адреса (вулиця, будинок) *</span>
                         <i class="fa fa-map-marker-alt field-icon"></i>
                     </label>
-
                     <label class="field" id="field-postoffice">
-                        <input type="text" id="post-office" name="postOffice" />
+                        <input type="text" id="post-office" name="postOffice" placeholder=" " />
                         <span>Відділення / поштомат *</span>
                         <i class="fa fa-location-dot field-icon"></i>
                     </label>
@@ -128,17 +119,15 @@
                 </div>
             </section>
 
-            <!-- STEP 3 -->
+            <!-- STEP 3: Оплата -->
             <section class="form-step" data-step="3">
                 <h2 class="form-title"><i class="fas fa-credit-card"></i> Оплата</h2>
-
                 <div class="options-row">
                     <label class="option-card selected">
                         <input type="radio" name="payment" value="card" checked />
                         <div class="opt-head"><i class="fa-solid fa-credit-card"></i><strong>Оплата карткою</strong></div>
                         <div class="opt-sub">Онлайн через платіжний шлюз</div>
                     </label>
-
                     <label class="option-card">
                         <input type="radio" name="payment" value="cash" />
                         <div class="opt-head"><i class="fa-solid fa-money-bill-wave"></i><strong>Оплата при отриманні</strong></div>
@@ -152,7 +141,6 @@
                         <span>Номер картки *</span>
                         <i class="fa fa-credit-card field-icon"></i>
                     </label>
-
                     <div class="grid-col-2-inline">
                         <label class="field small">
                             <input type="text" id="card-expiry" name="cardExpiry" placeholder="MM/YY" />
@@ -176,12 +164,11 @@
                 </div>
             </section>
 
-            <!-- STEP 4: Confirmation -->
+            <!-- STEP 4: Підтвердження -->
             <section class="form-step confirmation-step" data-step="4" aria-live="polite">
                 <div class="confirmation-card">
                     <div class="checkmark"><i class="fas fa-check-circle"></i></div>
                     <h3>Дякуємо! Ваше замовлення прийнято</h3>
- 
                     <p>Ми надіслали інформацію на вашу електронну пошту. Менеджер зв'яжеться з вами для підтвердження.</p>
                     <div class="actions">
                         <a class="btn btn-primary" href="catalog.html">Продовжити покупки</a>
