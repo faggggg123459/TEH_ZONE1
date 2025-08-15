@@ -1,288 +1,177 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Preloader
-    const preloader = document.querySelector('.preloader');
-    
-    // Simulate loading
+document.addEventListener('DOMContentLoaded', () => {
+    const preloader = document.getElementById('preloader');
+
+    // Прелоадер 3 секунди
     setTimeout(() => {
-        preloader.style.opacity = '0';
-        preloader.style.visibility = 'hidden';
-        document.body.style.overflow = 'auto';
-    }, 1500);
-    
-    // Theme Toggle
-    const themeToggle = document.querySelector('.theme-toggle');
-    const html = document.documentElement;
-    
-    themeToggle.addEventListener('click', () => {
-        html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
-        themeToggle.innerHTML = html.dataset.theme === 'dark' 
-            ? '<i class="fas fa-sun"></i>' 
-            : '<i class="fas fa-moon"></i>';
-    });
-    
-    // Mobile Menu
-    const menuToggle = document.querySelector('.menu-toggle');
-    const mainNav = document.querySelector('.main-nav');
-    
-    menuToggle.addEventListener('click', () => {
-        mainNav.classList.toggle('active');
-        menuToggle.innerHTML = mainNav.classList.contains('active') 
-            ? '<i class="fas fa-times"></i>' 
-            : '<i class="fas fa-bars"></i>';
-    });
-    
-    // Back to Top Button
-    const backToTop = document.querySelector('.back-to-top');
-    
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            backToTop.classList.add('visible');
-        } else {
-            backToTop.classList.remove('visible');
-        }
-    });
-    
-    backToTop.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-    
-    // Ripple Effect for Buttons
-    const buttons = document.querySelectorAll('.btn');
-    
-    buttons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            const x = e.clientX - e.target.getBoundingClientRect().left;
-            const y = e.clientY - e.target.getBoundingClientRect().top;
-            
-            const ripple = document.createElement('span');
-            ripple.classList.add('ripple-effect');
-            ripple.style.left = `${x}px`;
-            ripple.style.top = `${y}px`;
-            
-            this.appendChild(ripple);
-            
+        if (preloader) {
+            preloader.style.opacity = '0';
+            preloader.style.pointerEvents = 'none';
             setTimeout(() => {
-                ripple.remove();
-            }, 600);
-        });
-    });
-    
-    // Animate elements on scroll
-    const animateOnScroll = () => {
-        const elements = document.querySelectorAll('.animate-on-scroll');
-        
-        elements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight / 1.2;
-            
-            if (elementPosition < screenPosition) {
-                element.classList.add('animated');
-            }
-        });
-    };
-    
-    window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll(); // Run once on load
-    
-    // Add animation classes to elements
-    document.querySelectorAll('.order-progress .progress-step').forEach((step, index) => {
-        step.style.animationDelay = `${index * 0.1}s`;
-        step.classList.add('slide-in-up');
-    });
-    
-    document.querySelectorAll('.form-group').forEach((group, index) => {
-        group.style.animationDelay = `${index * 0.1 + 0.3}s`;
-        group.classList.add('fade-in');
-    });
-});
-document.addEventListener('DOMContentLoaded', function() {
-    const orderForm = document.getElementById('order-form');
-    const formSteps = document.querySelectorAll('.form-step');
-    const progressSteps = document.querySelectorAll('.progress-step');
-    const nextButtons = document.querySelectorAll('.btn-next');
-    const prevButtons = document.querySelectorAll('.btn-prev');
-    
-    // Phone Mask
-    const phoneInput = document.getElementById('phone');
-    if (phoneInput) {
-        phoneInput.addEventListener('input', function(e) {
-            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,2})(\d{0,3})(\d{0,2})(\d{0,2})/);
-            e.target.value = !x[2] ? x[1] : '+380 (' + x[2] + ') ' + x[3] + (x[4] ? ' ' + x[4] : '') + (x[5] ? ' ' + x[5] : '');
-        });
-    }
-    
-    // Card Number Mask
-    const cardNumberInput = document.getElementById('card-number');
-    if (cardNumberInput) {
-        cardNumberInput.addEventListener('input', function(e) {
-            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,4})(\d{0,4})(\d{0,4})(\d{0,4})/);
-            e.target.value = !x[2] ? x[1] : x[1] + ' ' + x[2] + (x[3] ? ' ' + x[3] : '') + (x[4] ? ' ' + x[4] : '');
-        });
-    }
-    
-    // Card Expiry Mask
-    const cardExpiryInput = document.getElementById('card-expiry');
-    if (cardExpiryInput) {
-        cardExpiryInput.addEventListener('input', function(e) {
-            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,2})/);
-            e.target.value = !x[2] ? x[1] : x[1] + '/' + x[2];
-        });
-    }
-    
-    // Delivery Options
-    const deliveryOptions = document.querySelectorAll('.delivery-options input[type="radio"]');
-    deliveryOptions.forEach(option => {
-        option.addEventListener('change', function() {
-            document.querySelectorAll('.delivery-options .option-card').forEach(card => {
-                card.classList.remove('selected');
-            });
-            this.closest('.option-card').classList.add('selected');
-        });
-    });
-    
-    // Payment Options
-    const paymentOptions = document.querySelectorAll('.payment-options input[type="radio"]');
-    paymentOptions.forEach(option => {
-        option.addEventListener('change', function() {
-            document.querySelectorAll('.payment-options .option-card').forEach(card => {
-                card.classList.remove('selected');
-            });
-            this.closest('.option-card').classList.add('selected');
-        });
-    });
-    
-    // Next Button
-    nextButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const currentStep = document.querySelector('.form-step.active');
-            const nextStepId = this.dataset.next;
-            const nextStep = document.querySelector(`.form-step[data-step="${nextStepId}"]`);
-            
-            if (validateStep(currentStep)) {
-                currentStep.classList.remove('active');
-                nextStep.classList.add('active');
-                updateProgress(nextStepId);
-                
-                // Scroll to top of form
-                orderForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                
-                // Animate next step
-                nextStep.style.animation = 'none';
-                setTimeout(() => {
-                    nextStep.style.animation = 'fadeIn 0.5s ease';
-                }, 10);
-            }
-        });
-    });
-    
-    // Previous Button
-    prevButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const currentStep = document.querySelector('.form-step.active');
-            const prevStepId = this.dataset.prev;
-            const prevStep = document.querySelector(`.form-step[data-step="${prevStepId}"]`);
-            
-            currentStep.classList.remove('active');
-            prevStep.classList.add('active');
-            updateProgress(prevStepId);
-            
-            // Scroll to top of form
-            orderForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-    });
-    
-    // Form Submission
-    orderForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        if (validateStep(document.querySelector('.form-step.active'))) {
-            // Simulate form submission
-            const submitBtn = document.querySelector('.btn-submit');
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Обробка...';
-            submitBtn.disabled = true;
-            
-            setTimeout(() => {
-                // Show confirmation
-                const currentStep = document.querySelector('.form-step.active');
-                const confirmationStep = document.querySelector('.confirmation-step');
-                
-                currentStep.classList.remove('active');
-                confirmationStep.classList.add('active');
-                updateProgress('4');
-                
-                // Scroll to top of form
-                orderForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                
-                // Reset button
-                submitBtn.innerHTML = 'Підтвердити замовлення <i class="fas fa-check"></i>';
-                submitBtn.disabled = false;
-            }, 2000);
+                preloader.style.display = 'none';
+            }, 500);
         }
-    });
-    
-    // Validate Step
+    }, 3000);
+
+    // Форми і кроки
+    const form = document.getElementById('order-form');
+    const steps = Array.from(form.querySelectorAll('.form-step'));
+    const progressSteps = Array.from(document.querySelectorAll('.progress-step'));
+    const progressLine = document.querySelector('.progress-line span');
+
+    let currentStep = 1;
+
+    function showStep(step) {
+        steps.forEach(s => s.classList.remove('active'));
+        progressSteps.forEach(p => p.classList.remove('active', 'completed'));
+
+        for(let i=0; i < progressSteps.length; i++) {
+            if (i+1 < step) {
+                progressSteps[i].classList.add('completed');
+            }
+            if (i+1 === step) {
+                progressSteps[i].classList.add('active');
+            }
+        }
+
+        progressLine.style.width = ((step - 1) / (steps.length - 1)) * 100 + '%';
+
+        const stepSection = steps.find(s => +s.dataset.step === step);
+        if(stepSection) stepSection.classList.add('active');
+    }
+
     function validateStep(step) {
-        let isValid = true;
-        const requiredInputs = step.querySelectorAll('[required]');
-        
-        requiredInputs.forEach(input => {
-            if (!input.value.trim()) {
-                input.closest('.form-group').classList.add('error');
-                isValid = false;
+        const stepSection = steps.find(s => +s.dataset.step === step);
+        if (!stepSection) return false;
+        const inputs = stepSection.querySelectorAll('input[required]');
+        for(const input of inputs) {
+            if (input.type === 'checkbox' && !input.checked) return false;
+            if (input.type !== 'checkbox' && !input.value.trim()) return false;
+        }
+        return true;
+    }
+
+    // Обробка натискань кнопок Далі та Назад
+    form.addEventListener('click', e => {
+        if(e.target.closest('.btn-next')) {
+            if(validateStep(currentStep)) {
+                currentStep++;
+                if (currentStep > steps.length) currentStep = steps.length;
+                showStep(currentStep);
             } else {
-                input.closest('.form-group').classList.remove('error');
-            }
-            
-            // Special validation for email
-            if (input.type === 'email' && input.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
-                input.closest('.form-group').classList.add('error');
-                isValid = false;
-            }
-        });
-        
-        if (!isValid) {
-            const firstError = step.querySelector('.error');
-            if (firstError) {
-                firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                alert('Будь ласка, заповніть всі обов’язкові поля на цьому кроці.');
             }
         }
-        
-        return isValid;
-    }
-    
-    // Update Progress
-    function updateProgress(activeStep) {
-        progressSteps.forEach(step => {
-            step.classList.remove('active', 'completed');
-            
-            if (step.dataset.step === activeStep) {
-                step.classList.add('active');
-            } else if (parseInt(step.dataset.step) < parseInt(activeStep)) {
-                step.classList.add('completed');
-            }
-        });
-    }
-    
-    // Floating Labels
-    const floatingLabels = document.querySelectorAll('.floating-label');
-    floatingLabels.forEach(label => {
-        const input = label.querySelector('input, select');
-        
-        if (input.value.trim()) {
-            label.querySelector('label').classList.add('active');
+        if(e.target.closest('.btn-prev')) {
+            currentStep--;
+            if (currentStep < 1) currentStep = 1;
+            showStep(currentStep);
         }
-        
-        input.addEventListener('focus', function() {
-            label.querySelector('label').classList.add('active');
-        });
-        
-        input.addEventListener('blur', function() {
-            if (!this.value.trim()) {
-                label.querySelector('label').classList.remove('active');
+    });
+
+    // Обробка відправки форми (підтвердження замовлення)
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        if(!validateStep(currentStep)) {
+            alert('Будь ласка, заповніть всі обов’язкові поля.');
+            return;
+        }
+        currentStep++;
+        if (currentStep > steps.length) currentStep = steps.length;
+        showStep(currentStep);
+    });
+
+    showStep(currentStep);
+
+    // Виділення вибраної опції доставки
+    const deliveryOptions = form.querySelectorAll('input[name="delivery"]');
+    deliveryOptions.forEach(option => {
+        option.addEventListener('change', () => {
+            const cards = form.querySelectorAll('label.option-card');
+            cards.forEach(card => card.classList.remove('selected'));
+            option.closest('label.option-card').classList.add('selected');
+
+            // Показ/приховання полів доставки в залежності від вибору
+            const city = document.getElementById('city');
+            const address = document.getElementById('address');
+            const postOffice = document.getElementById('post-office');
+            const fieldCity = document.getElementById('field-city');
+            const fieldAddress = document.getElementById('field-address');
+            const fieldPostOffice = document.getElementById('field-postoffice');
+
+            if(option.value === 'nova-poshta') {
+                fieldCity.style.display = 'none';
+                fieldAddress.style.display = 'none';
+                fieldPostOffice.style.display = 'block';
+                postOffice.required = true;
+                city.required = false;
+                address.required = false;
+            } else if(option.value === 'courier') {
+                fieldCity.style.display = 'block';
+                fieldAddress.style.display = 'block';
+                fieldPostOffice.style.display = 'none';
+                city.required = true;
+                address.required = true;
+                postOffice.required = false;
+            } else if(option.value === 'pickup') {
+                fieldCity.style.display = 'none';
+                fieldAddress.style.display = 'none';
+                fieldPostOffice.style.display = 'none';
+                city.required = false;
+                address.required = false;
+                postOffice.required = false;
             }
         });
     });
+
+    // Виділення вибраної опції оплати
+    const paymentOptions = form.querySelectorAll('input[name="payment"]');
+    const cardBlock = document.getElementById('card-block');
+
+    paymentOptions.forEach(option => {
+        option.addEventListener('change', () => {
+            const cards = form.querySelectorAll('label.option-card');
+            cards.forEach(card => {
+                // Якщо картка в межах блоку оплати (data-step=3), знімаємо selected
+                if(card.closest('[data-step="3"]')) card.classList.remove('selected');
+            });
+            option.closest('label.option-card').classList.add('selected');
+
+            if(option.value === 'card') {
+                cardBlock.style.display = 'grid';
+                // Встановити required для полів картки
+                cardBlock.querySelectorAll('input').forEach(input => input.required = true);
+            } else {
+                cardBlock.style.display = 'none';
+                // Зняти required для полів картки
+                cardBlock.querySelectorAll('input').forEach(input => input.required = false);
+            }
+        });
+    });
+
+    // Ініціалізуємо початковий стан для доставки та оплати
+    deliveryOptions.forEach(opt => {
+        if (opt.checked) opt.dispatchEvent(new Event('change'));
+    });
+    paymentOptions.forEach(opt => {
+        if (opt.checked) opt.dispatchEvent(new Event('change'));
+    });
+
+    // Кнопка "Назад до початку"
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopBtn.style.display = 'flex';
+        } else {
+            backToTopBtn.style.display = 'none';
+        }
+    });
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+
+    // Вставка поточного року в футер
+    const yearSpan = document.getElementById('year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
 });
