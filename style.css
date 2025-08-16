@@ -33,8 +33,7 @@ body::before {
 .btn-outline-warning {
   border-color: #ffcc00;
   color: #ffcc00;
-   margin-top: 5px;
-  display: flex;
+  
 }
 
 .btn-outline-warning:hover {
